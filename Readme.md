@@ -89,7 +89,7 @@ Add Ansible playbooks for full configuration management
 Iftikhar hussain
 DevOps Engineer passionate about automating infrastructure and improving cloud reliability.
 
-📧 [Email (optional)]
+📧 [Email (ifikharali081144@gmail.com)]
 🌐 GitHub Profile
 
 🏁 License
