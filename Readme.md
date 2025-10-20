@@ -21,8 +21,7 @@ This setup follows **Infrastructure as Code (IaC)** principles and is ideal for:
 
 Below is a high-level view of how this setup works — combining Terraform and Ansible to manage multiple AWS environments:
 
-![Terraform Multi-Environment Architecture](![Uploading Project-design.gif…]()
-)
+![Project-design](https://github.com/user-attachments/assets/b08757cb-7433-455a-a4f2-7f598ad193a5)
 
 ---
 
