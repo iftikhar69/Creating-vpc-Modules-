@@ -1,4 +1,4 @@
-# 🚀 Terraform Modular AWS Infrastructure
+#  Terraform Modular AWS Infrastructure
 
 This repository contains a **modular Terraform setup** designed to provision AWS infrastructure environments — **dev**, **staging**, and **production** — using reusable modules.  
 It allows you to spin up isolated, consistent environments with minimal configuration.
