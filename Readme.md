@@ -1,77 +1,97 @@
-# AWS Infrastructure Automation with Terraform
+# 🚀 Terraform Modular AWS Infrastructure
 
-This project automates the provisioning of a foundational AWS environment using **Terraform** and a **modular design pattern**.  
-It’s built to provide a reusable, environment-driven setup that can be extended for application deployments, CI/CD pipelines, or infrastructure blueprints.
-
----
-
-## 🏗️ Overview
-
-The configuration defines and manages the following components:
-
-- **VPC** — Uses AWS's default VPC for simplicity in early-stage environments.  
-- **Security Group** — Configured to allow SSH, HTTP, and custom app traffic.  
-- **EC2 Instance** — Launches a Linux server with configurable AMI, type, and storage.  
-- **Key Pair** — Automatically imports your local public key for SSH access.  
-- **DynamoDB Table** — Used for Terraform state locking or lightweight application data.  
-
-Each module is written for clarity, portability, and compliance with best practices for infrastructure as code (IaC).
+This repository contains a **modular Terraform setup** designed to provision AWS infrastructure environments — **dev**, **staging**, and **production** — using reusable modules.  
+It allows you to spin up isolated, consistent environments with minimal configuration.
 
 ---
 
-## 📁 Project Structure
+## 📘 Overview
 
-Creating-vpc(Modules)/
-├── main.tf # Root module invoking submodules
-├── provider.tf # AWS provider configuration
-├── terraform.tf # Backend and version constraints
+The goal of this project is to **automate cloud provisioning** using Terraform with a clean modular structure.  
+Each environment (e.g., dev, stg, prod) shares reusable Terraform code while maintaining independent variables and resources.
+
+This setup follows **Infrastructure as Code (IaC)** principles and is ideal for:
+- DevOps engineers learning Terraform modules
+- Teams managing multiple AWS environments
+- Automating repeatable cloud deployments
+
+---
+
+## 🧩 Architecture Diagram
+
+Below is a high-level view of how this setup works — combining Terraform and Ansible to manage multiple AWS environments:
+
+![Terraform Multi-Environment Architecture](./688c24ea-d66e-426a-8f13-9e55021b2515.gif)
+
+---
+
+## 🏗️ Components
+
+| Component | Description |
+|------------|--------------|
+| **Terraform (TF)** | Used to provision AWS resources such as EC2, VPCs, Security Groups, and S3 buckets. |
+| **Modules** | Encapsulate resources for reusability and maintainability across environments. |
+| **Ansible (optional)** | Handles post-deployment configuration (e.g., software installs). |
+| **Inventories** | Separate environment definitions: `dev`, `stg`, `prod`. |
+| **AWS Key Pair** | Automatically creates and attaches a key for SSH access. |
+
+---
+
+## 📂 Project Structure
+Creating-vpc-Modules/
+│
 ├── infra-app/
-│ ├── ec2.tf # EC2 instance, key pair, security group
+│ ├── ec2.tf # EC2 instance definition
+│ ├── s3.tf # S3 bucket configuration
 │ ├── dynamodb.tf # DynamoDB table definition
-│ ├── variables.tf # Module input variables
-│ └── outputs.tf # Module outputs
+│ ├── variable.tf # Variables for infra module
+│
+├── mian.tf # Root module configuration
+├── provider.tf # AWS provider setup
+├── terraform.tf # Terraform backend and state configuration
+├── .gitignore # Ignored sensitive & Terraform files
+└── README.md
+
 
 ---
 
-## ⚙️ Prerequisites
+## ⚙️ How to Use
 
-- **Terraform** v1.6 or later  
-- **AWS CLI** configured with valid credentials (`aws configure`)  
-- IAM permissions for EC2, VPC, and DynamoDB  
-
----
-
-## 🚀 Usage
-
-### 1️⃣ Initialize Terraform
-```bash
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/iftikhar69/Creating-vpc-Modules-.git
+   cd Creating-vpc-Modules-
+2. Initialize Terraform
 terraform init
 
-2️⃣ Validate Configuration
+3. Validate the Configuration
 terraform validate
 
-3️⃣ Preview the Changes
+4. Plan and Apply
 terraform plan
+terraform apply -auto-approve
 
-4️⃣ Deploy Infrastructure
-terraform apply
+5. Destroy (when done)
+terraform destroy -auto-approve
 
-5️⃣ Destroy Resources (when done)
-terraform destroy
+🧭 Future Improvements
 
-| Variable                | Description                       | Example                  |
-| ----------------------- | --------------------------------- | ------------------------ |
-| `env`                   | Environment name (e.g. dev, prod) | `"dev"`                  |
-| `instance_type`         | EC2 instance type                 | `"t3.micro"`             |
-| `ec2_ami_id`            | AMI ID for your region            | `"ami-0abc123456789xyz"` |
-| `ec2_root_storage_size` | Root volume size (GB)             | `10`                     |
-| `instance_count`        | Number of EC2 instances           | `1`                      |
+Add Terraform backend (S3 + DynamoDB) for remote state management
 
-🧾 License
+Integrate CI/CD pipeline (GitHub Actions) for automated deployments
 
-This project is licensed for personal and educational use.
-For enterprise usage or customization, feel free to fork and adapt.
+Expand modules for RDS, Load Balancer, and IAM roles
 
-Author: Iftikhar
-Stack: Terraform • AWS (EC2, VPC, DynamoDB) • Linux
-Purpose: Scalable, environment-driven AWS provisioning using Terraform.
+Add Ansible playbooks for full configuration management
+
+👨‍💻 Author
+
+Iftikhar hussain
+DevOps Engineer passionate about automating infrastructure and improving cloud reliability.
+
+📧 [Email (optional)]
+🌐 GitHub Profile
+
+🏁 License
+
+This project is licensed under the MIT License — free to use, modify, and share.
