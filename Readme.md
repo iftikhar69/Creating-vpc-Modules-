@@ -39,22 +39,20 @@ Below is a high-level view of how this setup works — combining Terraform (and 
 Each module is written for clarity, portability, and compliance with best practices for Infrastructure as Code (IaC).
 
 ---
-
-Creating-vpc-Modules/
-│
-├── infra-app/                     # Terraform module for AWS infrastructure
-│   ├── ec2.tf                     # EC2 instance, key pair, and security group
-│   ├── s3.tf                      # S3 bucket configuration
-│   ├── dynamodb.tf                # DynamoDB table definition
-│   ├── variables.tf               # Input variables for the module
-│   └── outputs.tf                 # Module outputs
-│
-├── main.tf                        # Root module configuration for dev/stg/prd
-├── provider.tf                    # AWS provider setup
-├── terraform.tf                   # Backend and Terraform version configuration
-├── .gitignore                     # Excludes sensitive and Terraform state files
-├── terra-key-ec2.pub              # SSH public key for EC2 access
-└── README.md                      # Project documentation
+| 📦 Directory/File                              | ⚙️ Description                                                   |
+| ---------------------------------------------- | ---------------------------------------------------------------- |
+| [`infra-app/`](./infra-app)                    | 🧱 Core Terraform module containing all AWS resource definitions |
+| ├── [`ec2.tf`](./infra-app/ec2.tf)             | 💻 Defines EC2 instance, key pair & security group               |
+| ├── [`s3.tf`](./infra-app/s3.tf)               | 🪣 S3 bucket configuration (per environment)                     |
+| ├── [`dynamodb.tf`](./infra-app/dynamodb.tf)   | 🧮 DynamoDB table for Terraform state locking                    |
+| ├── [`variables.tf`](./infra-app/variables.tf) | ⚙️ Input variables for module customization                      |
+| └── [`outputs.tf`](./infra-app/outputs.tf)     | 📤 Module output values                                          |
+| [`main.tf`](./main.tf)                         | 🧠 Root configuration — defines dev/stg/prd modules              |
+| [`provider.tf`](./provider.tf)                 | 🔑 AWS provider and credentials setup                            |
+| [`terraform.tf`](./terraform.tf)               | 🗂️ Backend & version configuration                              |
+| [`.gitignore`](./.gitignore)                   | 🚫 Ignore Terraform state and local cache files                  |
+| [`terra-key-ec2.pub`](./terra-key-ec2.pub)     | 🔐 SSH public key for EC2 access                                 |
+| [`README.md`](./README.md)                     | 📘 Project documentation                                         |
 
 
 ---
