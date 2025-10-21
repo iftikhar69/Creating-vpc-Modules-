@@ -1,11 +1,12 @@
 resource "aws_key_pair" "my_key" {
-  key_name   = "terra-key-ec2"           # Name of the key pair in AWS (can be seen in EC2 console)
-   public_key = file("terra-key-ec2.pub") # Reads your public key file from the local directory
-  # NOTE: This allows you to SSH into your instance using the private key (.pem)
+  key_name   = "${var.env}-terra-key-ec2"
+  public_key = file("${path.root}/terra-key-ec2.pub")
+
   tags = {
-    enviroment = var.env
+    environment = var.env
   }
 }
+
 
 # ---------------------------------------------------------
 # 2️⃣ VPC & Security Group Configuration
