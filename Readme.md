@@ -40,22 +40,21 @@ Each module is written for clarity, portability, and compliance with best practi
 
 ---
 
-## 📂 Project Structure
 Creating-vpc-Modules/
 │
-├── infra-app/
-│ ├── ec2.tf # EC2 instance definition
-│ ├── s3.tf # S3 bucket configuration
-│ ├── dynamodb.tf # DynamoDB table definition
-│ ├── variables.tf # Variables for infra module
-│ └── outputs.tf # Module outputs
+├── infra-app/                     # Terraform module for AWS infrastructure
+│   ├── ec2.tf                     # EC2 instance, key pair, and security group
+│   ├── s3.tf                      # S3 bucket configuration
+│   ├── dynamodb.tf                # DynamoDB table definition
+│   ├── variables.tf               # Input variables for the module
+│   └── outputs.tf                 # Module outputs
 │
-├── main.tf # Root module configuration
-├── provider.tf # AWS provider setup
-├── terraform.tf # Terraform backend and state configuration
-├── .gitignore # Ignored sensitive & Terraform files
-├── terra-key-ec2.pub # SSH public key for EC2 access
-└── README.md
+├── main.tf                        # Root module configuration for dev/stg/prd
+├── provider.tf                    # AWS provider setup
+├── terraform.tf                   # Backend and Terraform version configuration
+├── .gitignore                     # Excludes sensitive and Terraform state files
+├── terra-key-ec2.pub              # SSH public key for EC2 access
+└── README.md                      # Project documentation
 
 
 ---
